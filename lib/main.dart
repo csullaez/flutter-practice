@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:primera_app/lista.dart';
 
 void main() {
-  runApp(const MyApp());
+  runApp(Lista());
 }
 
 class MyApp extends StatelessWidget {
@@ -13,7 +14,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Flutter Demo',
       theme: ThemeData(
-        primarySwatch: Colors.blue,
+        primarySwatch: Colors.purple,
       ),
       home: const MyHomePage(title: 'Aplicacion para mostrar'),
     );
