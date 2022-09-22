@@ -18,6 +18,7 @@ class Lista extends StatefulWidget {
   // final Future<Persona> post;
 
   // Lista({ Key? key, required this.post}) :super(key: key);
+
   const Lista({super.key});
   @override
   State<Lista> createState() => _Lista();
