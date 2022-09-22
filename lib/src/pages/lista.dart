@@ -7,18 +7,6 @@ void main() {
 }
 
 class Lista extends StatefulWidget {
-  // final List<Pokemon> _personas = [
-  // Pokemon('Carlos', 'https://pokeapi.co/api/v2/pokemon/1/'),
-  // Pokemon('Carlos', 'https://pokeapi.co/api/v2/pokemon/1/'),
-  // Pokemon('Carlos', 'https://pokeapi.co/api/v2/pokemon/1/'),
-  // Pokemon('Carlos', 'https://pokeapi.co/api/v2/pokemon/1/'),
-  // Pokemon('Carlos', 'https://pokeapi.co/api/v2/pokemon/1/'),
-  // ];
-
-  // final Future<Persona> post;
-
-  // Lista({ Key? key, required this.post}) :super(key: key);
-
   const Lista({super.key});
   @override
   State<Lista> createState() => _Lista();
@@ -59,8 +47,14 @@ class _Lista extends State<Lista> {
                     return Container(
                       child: Center(
                         child: ListTile(
-                          onLongPress: (() {
-                            print(data[index].name);
+                          onTap: (() {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) =>
+                                    DetailScreen(pokemon: data[index]),
+                              ),
+                            );
                           }),
                           title: Text(data[index].name),
                           subtitle: Text(data[index].url),
@@ -86,6 +80,30 @@ class _Lista extends State<Lista> {
     );
   }
 }
+
+class DetailScreen extends StatelessWidget {
+  // Declara un campo que contenga el objeto Todo
+  final Pokemon pokemon;
+
+  // En el constructor, se requiere un objeto Todo
+  DetailScreen({Key? key, required this.pokemon}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    // Usa el objeto Todo para crear nuestra UI
+    return Scaffold(
+      appBar: AppBar(
+        title: Text(pokemon.name),
+      ),
+      body: Padding(
+        padding: EdgeInsets.all(16.0),
+        child: Text(pokemon.url),
+      ),
+    );
+  }
+}
+
+
 
 Future<List<Pokemon>> fetchPokemon() async {
   final response =
